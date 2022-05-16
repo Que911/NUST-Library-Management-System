@@ -1,0 +1,24 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+public class libJDBC {
+    public static void main(String[] args){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library",
+                    "root", "liswanisoroot338");
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultset = statement.executeQuery("select *  from Users");
+
+            while (resultset.next()) {
+                System.out.println(resultset.getString("ID"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
