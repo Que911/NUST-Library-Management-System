@@ -1,0 +1,127 @@
+CREATE database Library;
+USE Library;
+CREATE TABLE Users(ID varchar(10),
+first_Name varchar(20),
+last_Name varchar(20),
+joined_Date date,
+status varchar(20));
+INSERT INTO Users value('0001','April','Ujama','2020-03-28','Active');
+INSERT INTO Users VALUES('0002','Max','King','2020-03-28','Active');
+INSERT INTO Users VALUES('0003','Anna','Sunday','2020-03-28','Terminated');
+INSERT INTO Users VALUES('0004','Sean','Page','2020-03-28','Active');
+CREATE TABLE Users_Status
+(ID varchar(10),
+Status_Value varchar(10)
+);
+INSERT INTO Users_Status VALUES(101,'Active');
+INSERT INTO Users_Status VALUES(102,'Active');
+INSERT INTO Users_Status VALUES(103,'Terminated');
+INSERT INTO Users_Status VALUES(104,'Canceled');
+
+CREATE TABLE Book
+(ID varchar(10),
+Title varchar(20),
+Category_ID varchar(10),
+Publication_Year varchar(10),
+Copies_Owned varchar(100)
+);
+
+INSERT INTO Book VALUES('SBN21427','Programming 2',101,2006,25);
+INSERT INTO Book VALUES('SBN21428','Informatics',102,2003,50);
+INSERT INTO Book VALUES('SBN21429','English',103,2000,100);
+INSERT INTO Book VALUES('SBN21430','Accounting',104,1991,80);
+
+CREATE TABLE Author
+(ID varchar(10),
+first_Name varchar(20),
+last_Name varchar(20)
+);
+INSERT INTO Author VALUES(603,'Manish','Beatny');
+INSERT INTO Author VALUES(559,'Lawrence','Rose');
+INSERT INTO Author VALUES(204,'Julie','Peter');
+INSERT INTO Author VALUES(383,'Rachel','Johnson');
+
+CREATE TABLE Book_Author
+(book_ID varchar(10),
+Author_ID varchar(10)
+);
+INSERT INTO Book_Author VALUES('SBN21427',603);
+INSERT INTO Book_Author VALUES('SBN21428',559);
+INSERT INTO Book_Author VALUES('SBN21429',204);
+INSERT INTO Book_Author VALUES('SBN21430',383);
+
+CREATE TABLE Reservation
+( ID varchar(10),
+Book_ID varchar(10),
+Users_ID varchar(10),
+Reservation_Date date,
+Reservation_Status_ID varchar(10)
+);
+INSERT INTO Reservation VALUES(146,'SBN21427',0001,'2022-05-03',303);
+INSERT INTO Reservation VALUES(147,'SBN21428',0002,'2022-05-03',304);
+INSERT INTO Reservation VALUES(148,'SBN21429',0003,'2022-05-03',305);
+INSERT INTO Reservation VALUES(149,'SBN21430',0004,'2022-05-03',306);
+
+CREATE TABLE Reservation_Status
+(ID varchar(10),
+Status_Value varchar(10)
+);
+INSERT INTO Reservation_Status VALUES(146,'Available');
+INSERT INTO Reservation_Status VALUES(147,'Processing');
+INSERT INTO Reservation_Status VALUES(148,'Available');
+INSERT INTO Reservation_Status VALUES(149,'Available');
+
+CREATE TABLE Borrowed_Book
+(ID varchar(10),
+Book_ID varchar(10),
+Users_ID varchar(10),
+Borrowed_Date date,
+Returned_Date date
+);
+INSERT INTO Borrowed_Book VALUES(33,'SBN21427',0001,'2022-05-03','2022-05-10');
+INSERT INTO Borrowed_Book VALUES(34,'SBN21428',0002,'2022-05-03','2022-05-10');
+INSERT INTO Borrowed_Book VALUES(35,'SBN21429',0003,'2022-05-03','2022-05-10');
+INSERT INTO Borrowed_Book VALUES(36,'SBN21430',0004,'2022-05-03','2022-05-10');
+
+CREATE TABLE Category
+(ID varchar(10),
+Category_Name varchar(20)
+);
+INSERT INTO Category VALUES(1,'Study Shelf');
+INSERT INTO Category VALUES(2,'Open Shelf');
+INSERT INTO Category VALUES(3,'Guide Shelf');
+INSERT INTO Category VALUES(4,'Material Shelf');
+
+CREATE TABLE Fine
+(ID varchar(10),
+Users_ID varchar(10),
+Borrowed_ID varchar(10),
+Fine_Date date,
+Fine_Amount varchar(10),
+Fine_Method varchar(10)
+);
+INSERT INTO Fine VALUES(100,0001,33,'2022-05-11','N$50.00','Cash');
+INSERT INTO Fine VALUES(101,0002,34,'2022-05-11','N$50.00','Cash');
+INSERT INTO Fine VALUES(102,0003,35,'2022-05-11','N$50.00','Cash');
+INSERT INTO Fine VALUES(103,0004,36,'2022-05-11','N$50.00','Cash');
+
+CREATE TABLE Fine_Payment
+(ID varchar(10),
+Users_ID varchar(10),
+Payment_Date date,
+Payment_Amount varchar(10)
+);
+INSERT INTO Fine_Payment VALUES(1072405,0001,'2022-05-11','N$50.00');
+INSERT INTO Fine_Payment VALUES(1072405,0002,'2022-05-11','N$50.00');
+INSERT INTO Fine_Payment VALUES(1072455,0003,'2022-05-11','N$50.00');
+INSERT INTO Fine_Payment VALUES(1072455,0004,'2022-05-11','N$50.00');
+
+Select * from Users;
+Select * from Book;
+Select * from Book_Author;
+Select * from Reservation;
+Select * from Reservation_Status;
+Select * from Borrowed_Book;
+Select * from Category;
+Select * from Fine;
+Select * from Fine_Payment;	
